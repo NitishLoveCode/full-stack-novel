@@ -12,6 +12,7 @@ import Customized from './adminfun/Customized'
 import Comment from './adminfun/Comment'
 import Editors from './adminfun/Editors'
 import Redirection from './adminfun/Redirection'
+import NewContentCreate from '../component/newcontent/NewContentCreate'
 
 export default function AdminDashboard() {
   const location=useLocation()
@@ -70,6 +71,9 @@ export default function AdminDashboard() {
             }
             {
               location.pathname=="/novel/admin/user" ? <Ediorprofile/>:""
+            }
+            {
+              location.pathname=="/novel/admin/new-novel" ? <NewContentCreate/>:""
             }
 
             </div>
