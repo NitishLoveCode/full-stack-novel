@@ -7,6 +7,7 @@ import Approval from "../component/approval/Approval"
 import Ediorprofile from "../component/User/Ediorprofile"
 import Header from '../component/header/Header'
 import Leftside from '../component/leftside/Leftside'
+import NewNovelPage from '../component/novel/new/NewNovelPage'
 
 export default function Dashboard() {
   const location=useLocation()
@@ -42,6 +43,9 @@ export default function Dashboard() {
             }
             {
               location.pathname=="/novel/editor/user" ? <Ediorprofile/>:""
+            }
+            {
+              location.pathname=="/novel/editor/new-novel-page" ? <NewNovelPage/>:""
             }
 
             </div>
