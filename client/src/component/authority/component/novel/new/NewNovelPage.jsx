@@ -58,7 +58,7 @@ export default function NewNovelPage() {
             <div className='mt-5'>
                 <input className='w-full h-12 px-2 outline-primary rounded-md bg-gray-200' type="text" name="tag" placeholder='tag1, tag2'/>
             </div>
-            {/* --------------bottom Delete section---------------- */}
+            {/* --------------bottom for Delete section---------------- */}
             <div className='mt-8 p-2 active:scale-95 flex items-center justify-center text-lg text-white rounded-lg bg-gradient-to-r from-purple-500 to-pink-500'>
                 <button>Delete</button>
             </div>
