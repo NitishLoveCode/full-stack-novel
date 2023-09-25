@@ -18,7 +18,7 @@ export default function Dashboard() {
         {/* ----------------------------heaer component--------------------- */}
         <Header/>
 
-        {/* --------------------------header component end------------- */}
+        {/* ----------------------header component end------------- */}
 
           <div className='flex'>
             {/* -----------------left sidebar here------------------------- */}
