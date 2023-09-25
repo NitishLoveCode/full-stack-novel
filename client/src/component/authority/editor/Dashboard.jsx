@@ -15,7 +15,7 @@ export default function Dashboard() {
   return (
     <>
       <div>
-        {/* ----------------------------heaer component---------------------------- */}
+        {/* ----------------------------heaer component--------------------- */}
         <Header/>
 
         {/* --------------------------header component end------------- */}
