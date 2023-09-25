@@ -2,13 +2,35 @@ import React, { useState } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import {BsPlusSquareDotted} from "react-icons/bs"
+import Select_novel from './Select_novel';
+import CreateCoverPage from './CreateCoverPage';
 
 
 export default function NewNovelPage() {
     const [content,setcontent]=useState(null)
+    const [select_novel, setselect_novel]=useState(false)
+    const [newCoverPage, setnewCoverPage]=useState(false)
+
+
+    const open_select_toggle=()=>{
+        if(select_novel===true){
+            setselect_novel(false)
+        }else{
+            setselect_novel(true)
+        }
+    }
+
+    const open_create_new=()=>{
+        if(newCoverPage===true){
+            setnewCoverPage(false)
+        }else{
+            setnewCoverPage(true)
+        }
+    }
+
   return (
     <>
-    <div className='flex'>
+    <div className='flex relative'>
         <div className='w-[57vw]'>
             <div>
                 <input className='w-full h-10 outline-primary bg-gray-200 rounded-xl pl-3' type="text" name="title" placeholder='Title'/>
@@ -37,8 +59,8 @@ export default function NewNovelPage() {
             </div>
 
             <div className='flex justify-between mt-5'>
-                <button className='bg-primary p-2 px-3 text-white rounded-md active:scale-95'>Select novel</button>
-                <button className='bg-gray-300 p-2 px-3 rounded-md active:scale-95'>Create new</button>
+                <button onClick={()=>open_select_toggle()} className='bg-primary p-2 px-3 text-white rounded-md active:scale-95'>Select novel</button>
+                <button onClick={()=>open_create_new()} className='bg-gray-300 p-2 px-3 rounded-md active:scale-95'>Create new</button>
                 <button className='bg-gray-300 p-2 px-3 rounded-md'>Last page: 298</button>
             </div>
 
@@ -63,6 +85,20 @@ export default function NewNovelPage() {
                 <button>Delete</button>
             </div>
 
+        </div>
+
+
+        {/* -----------------select novel for adding pages---------------- */}
+        <div className={`absolute`}>
+            {
+                select_novel? <Select_novel/> :""
+            }
+        </div>
+        {/* ----------------------for creating new novel----------------- */}
+        <div className={`absolute`}>
+            {
+                newCoverPage? <CreateCoverPage/> :""
+            }
         </div>
     </div>
     </>
