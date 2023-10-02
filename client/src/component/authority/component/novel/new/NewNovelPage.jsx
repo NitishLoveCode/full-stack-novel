@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import {BsPlusSquareDotted} from "react-icons/bs"
@@ -10,7 +10,7 @@ export default function NewNovelPage() {
     const [content,setcontent]=useState(null)
     const [select_novel, setselect_novel]=useState(false)
     const [newCoverPage, setnewCoverPage]=useState(false)
-
+    const [selectedNovel, setselectedNovel]=useState(null)
 
     const open_select_toggle=()=>{
         if(select_novel===true){
@@ -28,6 +28,16 @@ export default function NewNovelPage() {
         }
     }
 
+
+    // -----------novel cover page selecting for eadit---------------
+    const coverPageData=JSON.parse(localStorage.getItem("selected_novel_for_edit"))
+    
+    useEffect(() => {
+        if (coverPageData && coverPageData._id) {
+          setselectedNovel(coverPageData);
+        }
+      }, [coverPageData?.id]);
+
   return (
     <>
     <div className='flex relative'>
@@ -39,15 +49,14 @@ export default function NewNovelPage() {
                 <input className='w-full h-10 outline-primary bg-gray-200 rounded-xl pl-3 mt-2' type="text" name="url" placeholder='URL'/>
             </div>
             <div className='mt-4 h-[72vh]'>
-                {/* <textarea className='w-full rounded-md h-full outline-primary outline-4 bg-gray-200 p-3' name="content" placeholder='Content'></textarea> */}
-                <div style={{height: 430}}>
+                <div style={{height: 400}}>
                    <ReactQuill className='h-full' theme="snow" value={content} onChange={setcontent} />
                 </div>
             </div>
         </div>
 
 
-        <div className='w-[30vw] ml-4'>
+        <div className='w-96 ml-4'>
             <div className='flex items-center justify-between'>
                 <button className='bg-primary p-3 rounded-md active:scale-95 text-white px-14'>Publish</button>
                 <button className='bg-gray-500 p-3 rounded-md active:scale-95 text-white px-14 '>Save Draft</button>
@@ -55,24 +64,33 @@ export default function NewNovelPage() {
 
             {/* -------------discription----------- */}
             <div>
-                <textarea className='w-full h-28 bg-gray-200 outline-primary mt-4 p-2 rounded-md' name="description" placeholder='Description' ></textarea>
+                <textarea className='w-full h-20 bg-gray-200 outline-primary mt-4 p-2 rounded-md' name="description" placeholder='Description' ></textarea>
             </div>
 
             <div className='flex justify-between mt-5'>
                 <button onClick={()=>open_select_toggle()} className='bg-primary p-2 px-3 text-white rounded-md active:scale-95'>Select novel</button>
                 <button onClick={()=>open_create_new()} className='bg-gray-300 p-2 px-3 rounded-md active:scale-95'>Create new</button>
-                <button className='bg-gray-300 p-2 px-3 rounded-md'>Last page: 298</button>
+                <button className='bg-gray-300 p-2 px-3 rounded-md'>Last page: {selectedNovel?.TotalPage}</button>
             </div>
 
 
-            <div className='mt-8'>
+            <div className='mt-5'>
                 <div className='flex justify-between'>
                     <div className='bg-gray-200 active:scale-95 h-36 rounded-md flex items-center justify-center w-[55%]'>
-                        <BsPlusSquareDotted className="text-4xl"/>
+                        {
+                            selectedNovel ? <>
+                            <img src={`http://localhost:8000/uploads/${selectedNovel?.coverimg}`} alt="novel cover page" />
+                            
+                            </>:<>
+                            <BsPlusSquareDotted className="text-4xl"/>
+                            
+                            </>
+                        }
+
                     </div>
                     <div className='flex flex-col justify-between'>
                         <button className='bg-primary p-2 rounded-md text-white py-3 active:scale-95'>Gallery</button>
-                        <button className='bg-gray-300 p-2 rounded-md text-gray-900 py-3'>Current Page: 299</button>
+                        <button className='bg-gray-300 p-2 rounded-md text-gray-900 py-3'>Current Page: {selectedNovel?.TotalPage+1}</button>
                     </div>
                 </div>
             </div>

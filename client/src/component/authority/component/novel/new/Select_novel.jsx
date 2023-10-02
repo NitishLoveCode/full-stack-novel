@@ -1,6 +1,10 @@
 import React from 'react'
 
 export default function Select_novel() {
+
+
+
+    
   return (
     <div className='flex flex-col p-4 gap-4 bg-gray-200 border-[1px] border-gray-400 overflow-y-scroll 
             m-4 rounded-xl w-[50vw] h-[60vh]'>
