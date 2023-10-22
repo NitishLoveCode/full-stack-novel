@@ -7,7 +7,7 @@ export default function Login() {
     const register_user=async()=>{
         try{
             if(email && password){
-                const res_user= await fetch("http://localhost:8000/login-user",{
+                const res_user= await fetch("https://full-stack-novel.vercel.app/login-user",{
                     method:"POST",
                     credentials:"include",
                     headers:{
